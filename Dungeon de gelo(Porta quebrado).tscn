@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Final Fantasy Brave Exvius (Personagens_principais)/Protagonista_1TESTE.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Protagonista/ativos/Zelda a link to the past/maps (ZLTTP)/level5_rc-0000.jpg" type="Texture" id=2]
+[ext_resource path="res://Dungeon de gelo(portal quebrado).gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48.4844, 69.4063 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 722, 683 )
+scale = Vector2( 5.61719, 5.67421 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 258, 2, 250, 237 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/StaticBody2D"]
+position = Vector2( -2.1363, -6.52074 )
+polygon = PoolVector2Array( -123.549, 125.128, -126.576, -112.615, 128.89, -112.615, 126.754, 125.833, 48.7788, 128.476, 49.3129, 126.89, 49.4909, 116.14, 49.3129, 100.983, 109.663, 48.9936, 107.705, -37.1858, 50.5591, -95.8724, -45.2184, -94.8149, -107.349, -35.0709, -107.883, 35.5997, -51.0932, 98.3397, 49.847, 100.455, 49.3129, 116.14, 48.7788, 126.361, -55.1878, 125.128 )
+
+[node name="portal_1" type="Area2D" parent="." groups=["Portal"]]
+position = Vector2( -1, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal_1"]
+position = Vector2( 187.516, 684 )
+shape = SubResource( 1 )
+
+[node name="fase_2" type="Position2D" parent="."]
+position = Vector2( -202, 691 )
+
+[node name="Protagonista_1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 736, 1046 )
+
+[connection signal="body_entered" from="portal_1" to="." method="_on_portal_1_body_entered"]
